@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Course - முகப்புப் பக்கம் | Jassif Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Course Specific Styles - Using your style.css colors */
+        .logo-icon {
+            animation: none !important;
+        }
+        
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: none !important;
+        }
+        
+        /* CSS Course Hero */
+        .css-hero {
+            background: linear-gradient(135deg, var(--git-color), #6e5494);
+        }
+        
+        /* Course Overview Cards */
+        .course-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .overview-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--git-color);
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .overview-card i {
+            font-size: 3rem;
+            color: var(--git-color);
+            margin-bottom: 1rem;
+        }
+        
+        .overview-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+        
+        /* Category Navigation */
+        .category-nav {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .category-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--git-color);
+            transition: all 0.3s;
+        }
+        
+        .category-item:hover {
+            background: white;
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-header i {
+            font-size: 1.5rem;
+            color: var(--git-color);
+            background: rgba(240, 80, 51, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+        }
+        
+        .tutorial-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .tutorial-links li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .tutorial-links li:before {
+            content: '›';
+            color: var(--git-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .tutorial-links a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .tutorial-links a:hover {
+            color: var(--git-color);
+            padding-left: 5px;
+        }
+        
+        /* Progress Section */
+        .progress-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .progress-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.2);
+            height: 25px;
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+            position: relative;
+        }
+        
+        .progress-bar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Featured Tutorials */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .featured-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .featured-icon {
+            background: linear-gradient(135deg, var(--git-color), #e74c3c);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        
+        .featured-content {
+            padding: 1.5rem;
+        }
+        
+        .featured-content h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+        
+        .link-item:hover {
+            background: var(--git-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .link-item i {
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .course-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="logo.jpg" alt="Jassif Team Logo" class="logo-image">
+                </div>
+                <h1>Jassif Team <span>Institution</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero css-hero" id="home">
+        <div class="hero-content">
+            <h2>CSS டுடோரியல்கள்</h2>
+            <p>178+ CSS பாடங்கள் - முழுமையான CSS பாடத்திட்டம் தமிழில்</p>
+            <div style="margin-top: 2rem;">
+                <a href="#start" class="nav-tab next" style="display: inline-flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-play-circle"></i>
+                    <span>கற்றலைத் தொடங்கு</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Course Overview -->
+        <section class="content-section" id="start">
+            <h2>CSS பாடநெறி கண்ணோட்டம்</h2>
+            <p>முழுமையான CSS பாடத்திட்டம் - ஆரம்பநிலையிலிருந்து மேம்பட்ட நிலை வரை</p>
+            
+            <div class="course-overview">
+                <div class="overview-card">
+                    <i class="fas fa-book-open"></i>
+                    <div class="overview-number">178</div>
+                    <h3>டுடோரியல்கள்</h3>
+                    <p>விரிவான CSS பாடங்கள்</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-layer-group"></i>
+                    <div class="overview-number">25</div>
+                    <h3>அத்தியாயங்கள்</h3>
+                    <p>தலைப்புகள் பிரிக்கப்பட்டுள்ளது</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="overview-number">12</div>
+                    <h3>மாதங்கள்</h3>
+                    <p>முழுமையான கற்றல் காலம்</p>
+                </div>
+                
+                <div class="overview-card">
+                    <i class="fas fa-award"></i>
+                    <div class="overview-number">1</div>
+                    <h3>சான்றிதழ்</h3>
+                    <p>பாடநெறி முடித்தமைக்கான</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section class="progress-section">
+            <h3 class="progress-title">உங்கள் கற்றல் முன்னேற்றம்</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-stats">
+                <div id="completedCount">0 முடிக்கப்பட்டது</div>
+                <div id="totalCount">178 மொத்தம்</div>
+                <div id="percentage">0% முழுமை</div>
+            </div>
+        </section>
+
+        <!-- Featured Tutorials -->
+        <section class="content-section">
+            <h2>முக்கியமான டுடோரியல்கள்</h2>
+            <p>CSS கற்றலைத் தொடங்க இந்த முக்கிய டுடோரியல்களிலிருந்து தொடங்குங்கள்</p>
+            
+            <div class="featured-grid">
+                <a href="CSS%20Tutorial.html" class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h3>CSS டுடோரியல்</h3>
+                        <p>CSS அடிப்படைகளை அறிந்து கொள்ளுங்கள்</p>
+                        <div style="color: var(--git-color); font-weight: bold; margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> தொடங்கு
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="CSS%20Flexbox.html" class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h3>CSS ஃப்ளெக்ஸ்பாக்ஸ்</h3>
+                        <p>நவீன தளவமைப்புகளைக் கற்றுக்கொள்ளுங்கள்</p>
+                        <div style="color: var(--git-color); font-weight: bold; margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> தொடங்கு
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="CSS%20Grid%20Layout.html" class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-grip"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h3>CSS கிரிட்</h3>
+                        <p>2D தளவமைப்பு அமைப்பைக் கற்றுக்கொள்ளுங்கள்</p>
+                        <div style="color: var(--git-color); font-weight: bold; margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> தொடங்கு
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="certificate.html" class="featured-card">
+                    <div class="featured-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h3>சான்றிதழ்</h3>
+                        <p>பாடநெறி முடித்தமைக்கான சான்றிதழ்</p>
+                        <div style="color: var(--git-color); font-weight: bold; margin-top: 1rem;">
+                            <i class="fas fa-arrow-right"></i> பெறுக
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Category Navigation -->
+        <section class="category-nav">
+            <h2 style="text-align: center; color: var(--dark); margin-bottom: 2rem;">CSS டுடோரியல் வகைகள்</h2>
+            
+            <div class="category-grid">
+                <!-- CSS Basics -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-book"></i>
+                        <h3>CSS அடிப்படைகள்</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="CSS%20Tutorial.html">CSS Tutorial</a></li>
+                        <li><a href="CSS%20Introduction.html">CSS Introduction</a></li>
+                        <li><a href="How%20To%20Add%20CSS.html">How To Add CSS</a></li>
+                        <li><a href="CSS%20Syntax.html">CSS Syntax</a></li>
+                        <li><a href="CSS%20Selectors.html">CSS Selectors</a></li>
+                        <li><a href="CSS%20Comments.html">CSS Comments</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CSS Colors -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-palette"></i>
+                        <h3>CSS வண்ணங்கள்</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="CSS%20Colors.html">CSS Colors</a></li>
+                        <li><a href="CSS%20RGB%20Colors.html">CSS RGB Colors</a></li>
+                        <li><a href="CSS%20HEX%20Colors.html">CSS HEX Colors</a></li>
+                        <li><a href="CSS%20HSL%20Colors.html">CSS HSL Colors</a></li>
+                        <li><a href="CSS%20Color%20Keywords.html">CSS Color Keywords</a></li>
+                        <li><a href="Color%20Names.html">Color Names</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CSS Layouts -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-th-large"></i>
+                        <h3>CSS தளவமைப்புகள்</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="CSS%20Box%20Model.html">CSS Box Model</a></li>
+                        <li><a href="CSS%20Flexbox.html">CSS Flexbox</a></li>
+                        <li><a href="CSS%20Grid%20Layout.html">CSS Grid Layout</a></li>
+                        <li><a href="CSS%20The%20position%20Property.html">CSS Position</a></li>
+                        <li><a href="CSS%20Float.html">CSS Float</a></li>
+                        <li><a href="CSS%20Website%20Layout.html">CSS Website Layout</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CSS Text & Fonts -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-font"></i>
+                        <h3>CSS உரை & எழுத்துருக்கள்</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="CSS%20Text%20Color.html">CSS Text Color</a></li>
+                        <li><a href="CSS%20Text%20Alignment.html">CSS Text Alignment</a></li>
+                        <li><a href="CSS%20Text%20Decoration.html">CSS Text Decoration</a></li>
+                        <li><a href="CSS%20Web%20Safe%20Fonts.html">CSS Web Safe Fonts</a></li>
+                        <li><a href="CSS%20Google%20Fonts.html">CSS Google Fonts</a></li>
+                        <li><a href="CSS%20Fonts.html">CSS Fonts</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CSS Responsive -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>பதிலளிக்கும் வடிவமைப்பு</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="Responsive%20Web%20Design.html">Responsive Web Design</a></li>
+                        <li><a href="CSS%20Media%20Queries.html">CSS Media Queries</a></li>
+                        <li><a href="Responsive%20Web%20Design%20-%20Images.html">Responsive Images</a></li>
+                        <li><a href="Responsive%20Web%20Design%20-%20Grid%20View.html">Responsive Grid View</a></li>
+                        <li><a href="Responsive%20Web%20Design%20-%20Frameworks.html">Responsive Frameworks</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CSS Advanced -->
+                <div class="category-item">
+                    <div class="category-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>மேம்பட்ட CSS</h3>
+                    </div>
+                    <ul class="tutorial-links">
+                        <li><a href="CSS%20Variables%20-%20var()%20Function.html">CSS Variables</a></li>
+                        <li><a href="CSS%20Animatable.html">CSS Animatable</a></li>
+                        <li><a href="CSS%20Performance%20Optimization.html">CSS Performance</a></li>
+                        <li><a href="CSS%20Accessibility%20Styling.html">CSS Accessibility</a></li>
+                        <li><a href="CSS%20Specificity.html">CSS Specificity</a></li>
+                        <li><a href="Sass%20Tutorial.html">Sass Tutorial</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="quick-links">
+            <h2 style="text-align: center; color: var(--dark); margin-bottom: 2rem;">விரைவு இணைப்புகள்</h2>
+            
+            <div class="links-grid">
+                <a href="CSS%20Examples.html" class="link-item">
+                    <i class="fas fa-code"></i>
+                    <div>
+                        <strong>CSS எடுத்துக்காட்டுகள்</strong>
+                        <div style="font-size: 0.9rem; color: #666;">நடைமுறை எடுத்துக்காட்டுகள்</div>
+                    </div>
+                </a>
+                
+                <a href="CSS%20Reference.html" class="link-item">
+                    <i class="fas fa-book"></i>
+                    <div>
+                        <strong>CSS குறிப்பு</strong>
+                        <div style="font-size: 0.9rem; color: #666;">முழுமையான CSS குறிப்பு</div>
+                    </div>
+                </a>
+                
+                <a href="CSS%20Templates.html" class="link-item">
+                    <i class="fas fa-file-code"></i>
+                    <div>
+                        <strong>CSS வார்ப்புருக்கள்</strong>
+                        <div style="font-size: 0.9rem; color: #666;">உடனடி பயன்பாட்டுக்கான வார்ப்புருக்கள்</div>
+                    </div>
+                </a>
+                
+                <a href="certificate.html" class="link-item">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <strong>CSS சான்றிதழ்</strong>
+                        <div style="font-size: 0.9rem; color: #666;">பாடநெறி முடித்தமை சான்றிதழ்</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section" style="text-align: center; background: linear-gradient(135deg, var(--git-color), #e74c3c); color: white;">
+            <h2 style="color: white;">CSS பாடநெறியை இன்றே தொடங்குங்கள்!</h2>
+            <p style="margin: 1.5rem 0; font-size: 1.1rem;">
+                178+ இலவச CSS டுடோரியல்கள் தமிழில் காத்திருக்கின்றன
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="CSS%20Tutorial.html" class="nav-tab next" style="background: white; color: var(--git-color);">
+                    <i class="fas fa-play"></i>
+                    <span>முதல் டுடோரியல்</span>
+                </a>
+                <a href="certificate.html" class="nav-tab prev" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">
+                    <i class="fas fa-award"></i>
+                    <span>சான்றிதழ் பெற</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Jassif Team Institution</h3>
+                <p>தமிழில் தரமான CSS கல்வி</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">
+                    <i class="fas fa-graduation-cap"></i> 178+ CSS Tutorials<br>
+                    <i class="fas fa-users"></i> 10,000+ Students<br>
+                    <i class="fas fa-certificate"></i> Industry Recognized
+                </p>
+            </div>
+            <div class="footer-column">
+                <h3>விரைவு இணைப்புகள்</h3>
+                <ul>
+                    <li><a href="CSS%20Tutorial.html">CSS Tutorial</a></li>
+                    <li><a href="CSS%20Flexbox.html">CSS Flexbox</a></li>
+                    <li><a href="CSS%20Grid%20Layout.html">CSS Grid Layout</a></li>
+                    <li><a href="CSS%20Reference.html">CSS Reference</a></li>
+                    <li><a href="certificate.html">CSS Certificate</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>தொடர்பு</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                    <li><a href="#"><i class="fas fa-comments"></i> Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Jassif Team Institution. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+        </div>
+    </footer>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-icon">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <script>
+        // Progress Tracking System
+        const totalTutorials = 178;
+        
+        function updateProgress() {
+            // Get completed tutorials from localStorage
+            let completed = 0;
+            const allLinks = document.querySelectorAll('.tutorial-links a');
+            
+            allLinks.forEach(link => {
+                const tutorialKey = link.getAttribute('href');
+                if (localStorage.getItem(`completed_${tutorialKey}`) === 'true') {
+                    completed++;
+                    // Mark as completed visually
+                    link.style.color = '#27ae60';
+                    link.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 5px;"></i>' + link.textContent;
+                }
+            });
+            
+            // Update progress bar
+            const percentage = Math.round((completed / totalTutorials) * 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${percentage}%`;
+            
+            // Update stats
+            document.getElementById('completedCount').textContent = `${completed} முடிக்கப்பட்டது`;
+            document.getElementById('percentage').textContent = `${percentage}% முழுமை`;
+            
+            // Save overall progress
+            localStorage.setItem('css_course_progress', percentage);
+            localStorage.setItem('css_tutorials_completed', completed);
+            
+            return { completed, percentage };
+        }
+        
+        // Mark tutorial as completed when clicked
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize progress
+            const progress = updateProgress();
+            
+            // Add click handlers to tutorial links
+            const tutorialLinks = document.querySelectorAll('.tutorial-links a');
+            tutorialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Allow navigation first
+                    setTimeout(() => {
+                        // Mark as completed
+                        const tutorialKey = this.getAttribute('href');
+                        localStorage.setItem(`completed_${tutorialKey}`, 'true');
+                        
+                        // Update progress
+                        updateProgress();
+                        
+                        // Show notification
+                        showNotification('டுடோரியல் முடிக்கப்பட்டதாகக் குறிக்கப்பட்டது!', 'success');
+                    }, 100);
+                });
+            });
+            
+            // Mark featured tutorials as visited
+            const featuredLinks = document.querySelectorAll('.featured-card');
+            featuredLinks.forEach(card => {
+                card.addEventListener('click', function() {
+                    const link = this.getAttribute('href');
+                    setTimeout(() => {
+                        localStorage.setItem(`completed_${link}`, 'true');
+                        updateProgress();
+                    }, 100);
+                });
+            });
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Check if user is new
+            if (!localStorage.getItem('css_course_first_visit')) {
+                showNotification('CSS பாடநெறிக்கு வரவேற்கிறோம்! தொடங்க "முதல் டுடோரியல்" பொத்தானைக் கிளிக் செய்யவும்.', 'info');
+                localStorage.setItem('css_course_first_visit', 'true');
+            }
+        });
+        
+        // Show notification function
+        function showNotification(message, type) {
+            // Remove existing notifications
+            const existing = document.querySelectorAll('.notification');
+            existing.forEach(n => n.remove());
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: white; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Style notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#27ae60' : '#3498db'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 400px;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
